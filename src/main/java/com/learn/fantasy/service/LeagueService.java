@@ -93,7 +93,7 @@ public class LeagueService {
         }
     }
 
-    @Cacheable(value = "memberPlayers")
+//    @Cacheable(value = "memberPlayers")
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public List<Long> getPlayersIds(Long memberId, MemberContent memberPlayer) {
         LOG.info("Started getting player ids...");
