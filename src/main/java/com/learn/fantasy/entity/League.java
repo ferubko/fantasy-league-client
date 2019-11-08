@@ -14,6 +14,7 @@ public class League implements Serializable {
     @Id
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
+    @Column(name = "name")
     private String name;
     @Basic
     @Temporal(TemporalType.DATE)

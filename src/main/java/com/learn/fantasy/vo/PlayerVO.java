@@ -12,6 +12,15 @@ public class PlayerVO implements Serializable {
     private String firstName;
     private String secondName;
     private String news;
+    private String photo;
+    private double averagePoints;
+    private int goalsScored;
+    private int assists;
+    private int cleanSheets;
+    private int penaltiesSaved;
+    private double influence;
+    private double creativity;
+    private double threat;
     private Integer totalPoints;
     private Long elementType;
     private Boolean isCaptain;
@@ -66,6 +75,78 @@ public class PlayerVO implements Serializable {
 
     public void setNews(String news) {
         this.news = news;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public double getAveragePoints() {
+        return averagePoints;
+    }
+
+    public void setAveragePoints(double averagePoints) {
+        this.averagePoints = averagePoints;
+    }
+
+    public int getGoalsScored() {
+        return goalsScored;
+    }
+
+    public void setGoalsScored(int goalsScored) {
+        this.goalsScored = goalsScored;
+    }
+
+    public int getAssists() {
+        return assists;
+    }
+
+    public void setAssists(int assists) {
+        this.assists = assists;
+    }
+
+    public int getCleanSheets() {
+        return cleanSheets;
+    }
+
+    public void setCleanSheets(int cleanSheets) {
+        this.cleanSheets = cleanSheets;
+    }
+
+    public int getPenaltiesSaved() {
+        return penaltiesSaved;
+    }
+
+    public void setPenaltiesSaved(int penaltiesSaved) {
+        this.penaltiesSaved = penaltiesSaved;
+    }
+
+    public double getInfluence() {
+        return influence;
+    }
+
+    public void setInfluence(double influence) {
+        this.influence = influence;
+    }
+
+    public double getCreativity() {
+        return creativity;
+    }
+
+    public void setCreativity(double creativity) {
+        this.creativity = creativity;
+    }
+
+    public double getThreat() {
+        return threat;
+    }
+
+    public void setThreat(double threat) {
+        this.threat = threat;
     }
 
     public Integer getTotalPoints() {

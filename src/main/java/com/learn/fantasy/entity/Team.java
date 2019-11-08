@@ -16,21 +16,11 @@ public class Team implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
     @Column(name = "name")
-
     private String name;
     @Column(name = "shortName")
-
     private String shortName;
     @Column(name = "strength")
-
     private Integer strength;
-
-//    @OneToMany( mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-//
-//    @LazyCollection(
-//            LazyCollectionOption.EXTRA
-//    )
-//    private Set<PlayerVO> players= new HashSet<>();
 
     public Team(Long id) {
         this.id = id;
@@ -70,20 +60,6 @@ public class Team implements Serializable {
     public void setStrength(int strength) {
         this.strength = strength;
     }
-
-//    public Set<PlayerVO> getPlayers() {
-//        return players;
-//    }
-//
-//    public void setPlayers(Set<PlayerVO> players) {
-//        this.players = players;
-//    }
-//
-//    public TeamVO addPlayer(PlayerVO  player) {
-//        players.add(player);
-//        player.setTeam(this);
-//        return this;
-//    }
 
     @Override
     public boolean equals(Object o) {

@@ -17,7 +17,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -151,6 +153,15 @@ public class MigrationService {
                 player.setFirstName(pl.getFirst_name());
                 player.setSecondName(pl.getSecond_name());
                 player.setNews(pl.getNews());
+                player.setPhoto(pl.getPhoto());
+                player.setAveragePoints(pl.getPoints_per_game());
+                player.setGoalsScored(pl.getGoals_scored());
+                player.setAssists(pl.getAssists());
+                player.setCleanSheets(pl.getClean_sheets());
+                player.setPenaltiesSaved(pl.getPenalties_saved());
+                player.setInfluence(pl.getInfluence());
+                player.setCreativity(pl.getCreativity());
+                player.setThreat(pl.getThreat());
                 player.setTotalPoints(pl.getTotal_points());
                 player.setElementType(pl.getElement_type());
                 player.setTeam(new Team(pl.getTeam()));

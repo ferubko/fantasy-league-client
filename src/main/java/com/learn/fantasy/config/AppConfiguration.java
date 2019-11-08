@@ -1,10 +1,13 @@
 package com.learn.fantasy.config;
 
+import com.google.common.cache.CacheBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,6 +19,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by stepanferubko
@@ -39,7 +44,16 @@ public class AppConfiguration implements WebMvcConfigurer {
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("players", "playerHistories", "playerTypes", "teams", "leagueMembers", "memberPlayers");
+        return new ConcurrentMapCacheManager("players", "playerHistories", "playerTypes", "teams") {
+            @Override
+            protected Cache createConcurrentMapCache(final String name) {
+                return new ConcurrentMapCache(name, CacheBuilder.newBuilder()
+                        .expireAfterWrite(1, TimeUnit.HOURS)
+                        .build()
+                        .asMap(),
+                        false);
+            }
+        };
     }
 
     @Bean

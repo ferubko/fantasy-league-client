@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -24,14 +25,28 @@ public class Player implements Serializable {
     private String secondName;
     @Column(name = "news")
     private String news;
+    @Column(name = "photo")
+    private String photo;
+    @Column(name = "averagePoints")
+    private Double averagePoints;
+    @Column(name = "goalsScored")
+    private Integer goalsScored;
+    @Column(name = "assists")
+    private Integer assists;
+    @Column(name = "cleanSheets")
+    private Integer cleanSheets;
+    @Column(name = "penaltiesSaved")
+    private Integer penaltiesSaved;
+    @Column(name = "influence")
+    private Double influence;
+    @Column(name = "creativity")
+    private Double creativity;
+    @Column(name = "threat")
+    private Double threat;
     @Column(name = "totalPoints")
     private Integer totalPoints;
     @Column(name = "elementType")
     private Long elementType;
-    @Column
-    private Boolean isCaptain;
-    @Column
-    private Boolean isViceCaptain;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
 //    @JsonIgnore
@@ -98,6 +113,78 @@ public class Player implements Serializable {
         this.news = news;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Double getAveragePoints() {
+        return averagePoints;
+    }
+
+    public void setAveragePoints(Double averagePoints) {
+        this.averagePoints = averagePoints;
+    }
+
+    public Integer getGoalsScored() {
+        return goalsScored;
+    }
+
+    public void setGoalsScored(Integer goalsScored) {
+        this.goalsScored = goalsScored;
+    }
+
+    public Integer getAssists() {
+        return assists;
+    }
+
+    public void setAssists(Integer assists) {
+        this.assists = assists;
+    }
+
+    public Integer getCleanSheets() {
+        return cleanSheets;
+    }
+
+    public void setCleanSheets(Integer cleanSheets) {
+        this.cleanSheets = cleanSheets;
+    }
+
+    public Integer getPenaltiesSaved() {
+        return penaltiesSaved;
+    }
+
+    public void setPenaltiesSaved(Integer penaltiesSaved) {
+        this.penaltiesSaved = penaltiesSaved;
+    }
+
+    public Double getInfluence() {
+        return influence;
+    }
+
+    public void setInfluence(Double influence) {
+        this.influence = influence;
+    }
+
+    public Double getCreativity() {
+        return creativity;
+    }
+
+    public void setCreativity(Double creativity) {
+        this.creativity = creativity;
+    }
+
+    public Double getThreat() {
+        return threat;
+    }
+
+    public void setThreat(Double threat) {
+        this.threat = threat;
+    }
+
     public Integer getTotalPoints() {
         return totalPoints;
     }
@@ -112,22 +199,6 @@ public class Player implements Serializable {
 
     public void setElementType(Long elementType) {
         this.elementType = elementType;
-    }
-
-    public Boolean getCaptain() {
-        return isCaptain;
-    }
-
-    public void setCaptain(Boolean captain) {
-        isCaptain = captain;
-    }
-
-    public Boolean getViceCaptain() {
-        return isViceCaptain;
-    }
-
-    public void setViceCaptain(Boolean viceCaptain) {
-        isViceCaptain = viceCaptain;
     }
 
     public Team getTeam() {
@@ -166,57 +237,53 @@ public class Player implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Player player = (Player) o;
-
-        if (id != null ? !id.equals(player.id) : player.id != null) return false;
-        if (code != null ? !code.equals(player.code) : player.code != null) return false;
-        if (firstName != null ? !firstName.equals(player.firstName) : player.firstName != null) return false;
-        if (secondName != null ? !secondName.equals(player.secondName) : player.secondName != null) return false;
-        if (news != null ? !news.equals(player.news) : player.news != null) return false;
-        if (totalPoints != null ? !totalPoints.equals(player.totalPoints) : player.totalPoints != null) return false;
-        if (elementType != null ? !elementType.equals(player.elementType) : player.elementType != null) return false;
-        if (isCaptain != null ? !isCaptain.equals(player.isCaptain) : player.isCaptain != null) return false;
-        if (isViceCaptain != null ? !isViceCaptain.equals(player.isViceCaptain) : player.isViceCaptain != null)
-            return false;
-        if (team != null ? !team.equals(player.team) : player.team != null) return false;
-        if (playerType != null ? !playerType.equals(player.playerType) : player.playerType != null) return false;
-        if (playerHistory != null ? !playerHistory.equals(player.playerHistory) : player.playerHistory != null)
-            return false;
-        return leagueMember != null ? leagueMember.equals(player.leagueMember) : player.leagueMember == null;
-
+        return Double.compare(player.averagePoints, averagePoints) == 0 &&
+                goalsScored == player.goalsScored &&
+                assists == player.assists &&
+                cleanSheets == player.cleanSheets &&
+                penaltiesSaved == player.penaltiesSaved &&
+                Double.compare(player.influence, influence) == 0 &&
+                Double.compare(player.creativity, creativity) == 0 &&
+                Double.compare(player.threat, threat) == 0 &&
+                Objects.equals(id, player.id) &&
+                Objects.equals(code, player.code) &&
+                Objects.equals(firstName, player.firstName) &&
+                Objects.equals(secondName, player.secondName) &&
+                Objects.equals(news, player.news) &&
+                Objects.equals(photo, player.photo) &&
+                Objects.equals(totalPoints, player.totalPoints) &&
+                Objects.equals(elementType, player.elementType) &&
+                Objects.equals(team, player.team) &&
+                Objects.equals(playerType, player.playerType) &&
+                Objects.equals(playerHistory, player.playerHistory) &&
+                Objects.equals(leagueMember, player.leagueMember);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
-        result = 31 * result + (news != null ? news.hashCode() : 0);
-        result = 31 * result + (totalPoints != null ? totalPoints.hashCode() : 0);
-        result = 31 * result + (elementType != null ? elementType.hashCode() : 0);
-        result = 31 * result + (isCaptain != null ? isCaptain.hashCode() : 0);
-        result = 31 * result + (isViceCaptain != null ? isViceCaptain.hashCode() : 0);
-        result = 31 * result + (team != null ? team.hashCode() : 0);
-        result = 31 * result + (playerType != null ? playerType.hashCode() : 0);
-        result = 31 * result + (playerHistory != null ? playerHistory.hashCode() : 0);
-        result = 31 * result + (leagueMember != null ? leagueMember.hashCode() : 0);
-        return result;
+        return Objects.hash(id, code, firstName, secondName, news, photo, averagePoints, goalsScored, assists, cleanSheets, penaltiesSaved, influence, creativity, threat, totalPoints, elementType, team, playerType, playerHistory, leagueMember);
     }
 
     @Override
     public String toString() {
-        return "PlayerVO{" +
+        return "Player{" +
                 "id=" + id +
                 ", code=" + code +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", news='" + news + '\'' +
+                ", photo='" + photo + '\'' +
+                ", averagePoints=" + averagePoints +
+                ", goalsScored=" + goalsScored +
+                ", assists=" + assists +
+                ", cleanSheets=" + cleanSheets +
+                ", penaltiesSaved=" + penaltiesSaved +
+                ", influence=" + influence +
+                ", creativity=" + creativity +
+                ", threat=" + threat +
                 ", totalPoints=" + totalPoints +
                 ", elementType=" + elementType +
-                ", isCaptain=" + isCaptain +
-                ", isViceCaptain=" + isViceCaptain +
                 ", team=" + team +
                 ", playerType=" + playerType +
                 ", playerHistory=" + playerHistory +

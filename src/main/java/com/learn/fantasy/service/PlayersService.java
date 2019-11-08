@@ -69,7 +69,7 @@ public class PlayersService {
         return players.stream().map(player -> modelMapper.map(player, PlayerVO.class)).collect(Collectors.toList());
     }
 
-//    @Cacheable(value = "players")
+    //    @Cacheable(value = "players")
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public List<PlayerVO> getPlayersByIds(List<Long> ids) {
         LOG.info("Get Players by ids :" + ids.toString());
@@ -77,7 +77,7 @@ public class PlayersService {
         return players.stream().map(player -> modelMapper.map(player, PlayerVO.class)).collect(Collectors.toList());
     }
 
-//    @Cacheable(value = "playerHistories")
+    //    @Cacheable(value = "playerHistories")
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public List<PlayerHistoryVO> getPlayerHistory(Long id) {
         LOG.info("Get Player History by id :" + id);

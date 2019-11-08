@@ -18,9 +18,13 @@ public class PlayerHistory implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
+    @Column(name = "element")
     private Long element;
+    @Column(name = "opponentTeam")
     private Long opponentTeam;
+    @Column(name = "totalPoints")
     private Integer totalPoints;
+    @Column(name = "kickoffTime")
     private Date kickoffTime;
     @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id")

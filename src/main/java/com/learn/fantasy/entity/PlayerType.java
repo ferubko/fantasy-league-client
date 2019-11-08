@@ -15,12 +15,19 @@ public class PlayerType implements Serializable {
     @Id
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
+    @Column(name = "pluralName")
     private String pluralName;
+    @Column(name = "pluralShortName")
     private String pluralShortName;
+    @Column(name = "singularName")
     private String singularName;
+    @Column(name = "singularShortName")
     private String singularShortName;
+    @Column(name = "squadSelect")
     private Integer squadSelect;
+    @Column(name = "squadMinPlay")
     private Integer squadMinPlay;
+    @Column(name = "squadMaxPlay")
     private Integer squadMaxPlay;
 
     public PlayerType(Long id) {

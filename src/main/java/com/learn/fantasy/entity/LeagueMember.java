@@ -13,13 +13,21 @@ public class LeagueMember implements Serializable {
     @Id
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
+    @Column(name = "eventTotal")
     private Integer eventTotal;
+    @Column(name = "playerName")
     private String playerName;
+    @Column(name = "rank")
     private Integer rank;
+    @Column(name = "lastRank")
     private Integer lastRank;
+    @Column(name = "rankSort")
     private Integer rankSort;
+    @Column(name = "total")
     private Integer total;
+    @Column(name = "entry")
     private Long entry;
+    @Column(name = "entryName")
     private String entryName;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "league_id")
