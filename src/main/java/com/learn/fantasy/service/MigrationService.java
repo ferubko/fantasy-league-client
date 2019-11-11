@@ -12,6 +12,7 @@ import com.learn.fantasy.dto.player.History;
 import com.learn.fantasy.entity.*;
 import com.learn.fantasy.repository.*;
 import com.learn.fantasy.util.FileReader;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -153,7 +154,7 @@ public class MigrationService {
                 player.setFirstName(pl.getFirst_name());
                 player.setSecondName(pl.getSecond_name());
                 player.setNews(pl.getNews());
-                player.setPhoto(pl.getPhoto());
+                player.setPhoto(formatPhotoFormat(pl.getPhoto()));
                 player.setAveragePoints(pl.getPoints_per_game());
                 player.setGoalsScored(pl.getGoals_scored());
                 player.setAssists(pl.getAssists());
@@ -247,5 +248,8 @@ public class MigrationService {
     public FullInfo getFullInfo() {
         LOG.info("Getting Full Information content...");
         return premierLeaguApiClient.getFullInformation();
+    }
+    private String formatPhotoFormat(String photo){
+        return StringUtils.isNotEmpty(photo)?photo.replace("jpg", "png"):photo;
     }
 }
