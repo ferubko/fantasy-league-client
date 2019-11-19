@@ -1,6 +1,7 @@
 package com.learn.fantasy.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table
+@DynamicUpdate
 @JsonIgnoreProperties(value = {"playerHistory"})
 public class Player implements Serializable {
     @Id
