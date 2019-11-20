@@ -16,4 +16,7 @@ public interface PlayerHistoryRepository extends CrudRepository<PlayerHistory, L
 
     @Query("select h from PlayerHistory h where h.player.id=?1")
     List<PlayerHistory> findByPlayerId(Long playerId);
+
+//    @Query("select h from PlayerHistory h where h.player.id=?1")
+    void removePlayerHistoryByPlayerId(Long playerId);
 }

@@ -51,17 +51,11 @@ public class Player implements Serializable {
     private Long elementType;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
-//    @JsonIgnore
     private Team team;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_type_id")
-//    @JsonIgnore
     private PlayerType playerType;
-    //    @JsonManagedReference
-    @OneToMany(mappedBy = "player")//, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JsonIgnoreProperties(value = "player")
-//    @JsonIgnore//Properties(value = "player", allowSetters = true)
-//    @JsonProperty(value = "playerHistories")
+    @OneToMany(mappedBy = "player")
     private Set<PlayerHistory> playerHistory;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

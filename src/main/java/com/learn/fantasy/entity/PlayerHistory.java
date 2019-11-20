@@ -28,9 +28,9 @@ public class PlayerHistory implements Serializable {
     private Integer totalPoints;
     @Column(name = "kickoffTime")
     private Date kickoffTime;
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "player_id")
-    @JsonIgnore//Properties(value = "playerHistory", allowSetters = true)
+    @JsonIgnore
     private Player player;
 
     public PlayerHistory(Long id) {

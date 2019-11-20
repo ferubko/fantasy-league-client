@@ -2,6 +2,7 @@ package com.learn.fantasy.controller.client;
 
 import com.learn.fantasy.dto.request.PlayerSearchRequest;
 import com.learn.fantasy.service.PlayersService;
+import com.learn.fantasy.service.SynchronizeService;
 import com.learn.fantasy.vo.PlayerHistoryVO;
 import com.learn.fantasy.vo.PlayerTypeVO;
 import com.learn.fantasy.vo.PlayerVO;
@@ -21,11 +22,19 @@ public class PlayerRestController extends AbstractController {
 
     @Autowired
     private PlayersService playersService;
+    @Autowired
+    private SynchronizeService synchronizeService;
 
     @RequestMapping(value = "/types", method = RequestMethod.GET)
     @CrossOrigin
     public List<PlayerTypeVO> getPlayerTypes() {
         return playersService.getPlayerTypes();
+    }
+
+    @RequestMapping(value = "/size", method = RequestMethod.GET)
+    @CrossOrigin
+    public int getPlayerSize() {
+        return synchronizeService.checkIfPlayersExist();
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.GET)

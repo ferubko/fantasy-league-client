@@ -122,18 +122,7 @@ public class MigrationService {
         LOG.info("Started saving PlayerType content...");
         try {
             List<Element_types> elementTypes = fullInfo.getElement_types();
-            List<PlayerType> collect = elementTypes.stream().map(et -> {
-                PlayerType playerType = new PlayerType();
-                playerType.setId(et.getId());
-                playerType.setPluralName(et.getPlural_name());
-                playerType.setPluralShortName(et.getPlural_name_short());
-                playerType.setSingularName(et.getSingular_name());
-                playerType.setSingularShortName(et.getSingular_name_short());
-                playerType.setSquadSelect(et.getSquad_select());
-                playerType.setSquadMinPlay(et.getSquad_min_play());
-                playerType.setSquadMaxPlay(et.getSquad_max_play());
-                return playerType;
-            }).collect(Collectors.toList());
+            List<PlayerType> collect = elementTypes.stream().map(this::convertPlayerType).collect(Collectors.toList());
             playerTypeRepository.saveAll(collect);
             LOG.info("Finished saving PlayerType content...");
             return SUCCESS;
@@ -143,35 +132,24 @@ public class MigrationService {
         }
     }
 
+    private PlayerType convertPlayerType(Element_types et) {
+        PlayerType playerType = new PlayerType();
+        playerType.setId(et.getId());
+        playerType.setPluralName(et.getPlural_name());
+        playerType.setPluralShortName(et.getPlural_name_short());
+        playerType.setSingularName(et.getSingular_name());
+        playerType.setSingularShortName(et.getSingular_name_short());
+        playerType.setSquadSelect(et.getSquad_select());
+        playerType.setSquadMinPlay(et.getSquad_min_play());
+        playerType.setSquadMaxPlay(et.getSquad_max_play());
+        return playerType;
+    }
+
     public String fillPlayerContent(FullInfo fullInfo, Map<Long, List<Long>> leagueMemberPlayers) {
         LOG.info("Started saving Player content...");
         try {
             List<Elements> elements = fullInfo.getElements();
-            List<Player> playerList = elements.stream().map(pl -> {
-                Player player = new Player();
-                player.setId(pl.getId());
-                player.setCode(pl.getCode());
-                player.setFirstName(pl.getFirst_name());
-                player.setSecondName(pl.getSecond_name());
-                player.setNews(pl.getNews());
-                player.setPhoto(formatPhotoFormat(pl.getPhoto()));
-                player.setAveragePoints(pl.getPoints_per_game());
-                player.setGoalsScored(pl.getGoals_scored());
-                player.setAssists(pl.getAssists());
-                player.setCleanSheets(pl.getClean_sheets());
-                player.setPenaltiesSaved(pl.getPenalties_saved());
-                player.setInfluence(pl.getInfluence());
-                player.setCreativity(pl.getCreativity());
-                player.setThreat(pl.getThreat());
-                player.setTotalPoints(pl.getTotal_points());
-                player.setElementType(pl.getElement_type());
-                player.setTeam(new Team(pl.getTeam()));
-//                Long leagueMemberId = getLeagueMemberPlayer(leagueMemberPlayers, pl.getId());
-//                if (!leagueMemberId.equals(0l))
-//                player.setLeagueMember(new LeagueMember(leagueMemberId));
-                player.setPlayerType(new PlayerType(pl.getElement_type()));
-                return player;
-            }).collect(Collectors.toList());
+            List<Player> playerList = elements.stream().map(this::convertPlayer).collect(Collectors.toList());
             playerRepository.saveAll(playerList);
             LOG.info("Finished saving Player content...");
             return SUCCESS;
@@ -179,6 +157,32 @@ public class MigrationService {
             e.printStackTrace();
             return FAILURE;
         }
+    }
+
+    public Player convertPlayer(Elements pl) {
+        Player player = new Player();
+        player.setId(pl.getId());
+        player.setCode(pl.getCode());
+        player.setFirstName(pl.getFirst_name());
+        player.setSecondName(pl.getSecond_name());
+        player.setNews(pl.getNews());
+        player.setPhoto(formatPhotoFormat(pl.getPhoto()));
+        player.setAveragePoints(pl.getPoints_per_game());
+        player.setGoalsScored(pl.getGoals_scored());
+        player.setAssists(pl.getAssists());
+        player.setCleanSheets(pl.getClean_sheets());
+        player.setPenaltiesSaved(pl.getPenalties_saved());
+        player.setInfluence(pl.getInfluence());
+        player.setCreativity(pl.getCreativity());
+        player.setThreat(pl.getThreat());
+        player.setTotalPoints(pl.getTotal_points());
+        player.setElementType(pl.getElement_type());
+        player.setTeam(new Team(pl.getTeam()));
+//      Long leagueMemberId = getLeagueMemberPlayer(leagueMemberPlayers, pl.getId());
+//      if (!leagueMemberId.equals(0l))
+//      player.setLeagueMember(new LeagueMember(leagueMemberId));
+        player.setPlayerType(new PlayerType(pl.getElement_type()));
+        return player;
     }
 
     public String fillPlayerHistory() {
@@ -190,12 +194,7 @@ public class MigrationService {
                 com.learn.fantasy.dto.player.Player response = premierLeaguApiClient.getPlayerHistoty(id);
                 List<History> history = response.getHistory();
                 history.forEach(h -> {
-                    PlayerHistory playerHistory = new PlayerHistory();
-                    playerHistory.setElement(h.getElement());
-                    playerHistory.setOpponentTeam(h.getOpponent_team());
-                    playerHistory.setTotalPoints(h.getTotal_points());
-                    playerHistory.setKickoffTime(h.getKickoff_time());
-                    playerHistory.setPlayer(player);
+                    PlayerHistory playerHistory = convertPlayerHistory(player, h);
                     playerHistoryRepository.save(playerHistory);
                 });
             });
@@ -205,6 +204,16 @@ public class MigrationService {
             e.printStackTrace();
             return FAILURE;
         }
+    }
+
+    private PlayerHistory convertPlayerHistory(Player player, History h) {
+        PlayerHistory playerHistory = new PlayerHistory();
+        playerHistory.setElement(h.getElement());
+        playerHistory.setOpponentTeam(h.getOpponent_team());
+        playerHistory.setTotalPoints(h.getTotal_points());
+        playerHistory.setKickoffTime(h.getKickoff_time());
+        playerHistory.setPlayer(player);
+        return playerHistory;
     }
 
     public String getLeagueMembers() {
@@ -249,7 +258,8 @@ public class MigrationService {
         LOG.info("Getting Full Information content...");
         return premierLeaguApiClient.getFullInformation();
     }
-    private String formatPhotoFormat(String photo){
-        return StringUtils.isNotEmpty(photo)?photo.replace("jpg", "png"):photo;
+
+    private String formatPhotoFormat(String photo) {
+        return StringUtils.isNotEmpty(photo) ? photo.replace("jpg", "png") : photo;
     }
 }
