@@ -25,7 +25,7 @@ public class LeagueRestController {
         return leagueService.getLeagueMembers();
     }
 
-    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/details/{id}", method = RequestMethod.POST)
     public LeagueMemberVO getLeagueMemberDetails(@PathVariable("id") Long id) {
         return leagueService.getLeagueMemberDetails(id);
     }

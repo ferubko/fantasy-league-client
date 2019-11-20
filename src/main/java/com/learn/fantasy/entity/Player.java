@@ -58,9 +58,9 @@ public class Player implements Serializable {
     @OneToMany(mappedBy = "player")
     private Set<PlayerHistory> playerHistory;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "leagueMember_id")
-    private LeagueMember leagueMember;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "leagueMember_id")
+//    private LeagueMember leagueMember;
 
     public Player(Long id) {
         this.id = id;
@@ -221,13 +221,13 @@ public class Player implements Serializable {
         this.playerHistory = playerHistory;
     }
 
-    public LeagueMember getLeagueMember() {
-        return leagueMember;
-    }
-
-    public void setLeagueMember(LeagueMember leagueMember) {
-        this.leagueMember = leagueMember;
-    }
+//    public LeagueMember getLeagueMember() {
+//        return leagueMember;
+//    }
+//
+//    public void setLeagueMember(LeagueMember leagueMember) {
+//        this.leagueMember = leagueMember;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -252,13 +252,13 @@ public class Player implements Serializable {
                 Objects.equals(elementType, player.elementType) &&
                 Objects.equals(team, player.team) &&
                 Objects.equals(playerType, player.playerType) &&
-                Objects.equals(playerHistory, player.playerHistory) &&
-                Objects.equals(leagueMember, player.leagueMember);
+                Objects.equals(playerHistory, player.playerHistory);// &&
+//                Objects.equals(leagueMember, player.leagueMember);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, code, firstName, secondName, news, photo, averagePoints, goalsScored, assists, cleanSheets, penaltiesSaved, influence, creativity, threat, totalPoints, elementType, team, playerType, playerHistory, leagueMember);
+        return Objects.hash(id, code, firstName, secondName, news, photo, averagePoints, goalsScored, assists, cleanSheets, penaltiesSaved, influence, creativity, threat, totalPoints, elementType, team, playerType, playerHistory);
     }
 
     @Override
@@ -283,7 +283,7 @@ public class Player implements Serializable {
                 ", team=" + team +
                 ", playerType=" + playerType +
                 ", playerHistory=" + playerHistory +
-                ", leagueMember=" + leagueMember +
+//                ", leagueMember=" + leagueMember +
                 '}';
     }
 }

@@ -32,8 +32,8 @@ public class LeagueMember implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "league_id")
     private League league;
-    @OneToMany(mappedBy = "leagueMember", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Player> startingLineup;
+//    @OneToMany(mappedBy = "leagueMember", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Player> startingLineup;
 
     public LeagueMember(Long id) {
         this.id = id;
@@ -122,13 +122,13 @@ public class LeagueMember implements Serializable {
         this.league = league;
     }
 
-    public List<Player> getStartingLineup() {
-        return startingLineup;
-    }
-
-    public void setStartingLineup(List<Player> startingLineup) {
-        this.startingLineup = startingLineup;
-    }
+//    public List<Player> getStartingLineup() {
+//        return startingLineup;
+//    }
+//
+//    public void setStartingLineup(List<Player> startingLineup) {
+//        this.startingLineup = startingLineup;
+//    }
 
     @Override
     public boolean equals(Object o) {

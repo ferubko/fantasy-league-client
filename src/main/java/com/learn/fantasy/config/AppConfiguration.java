@@ -44,7 +44,7 @@ public class AppConfiguration implements WebMvcConfigurer {
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("fullResponse", "players", "playerHistories", "playerTypes", "teams") {
+        return new ConcurrentMapCacheManager("fullResponse", "leagueMembers", "players", "playerHistories", "playerTypes", "teams") {
             @Override
             protected Cache createConcurrentMapCache(final String name) {
                 return new ConcurrentMapCache(name, CacheBuilder.newBuilder()

@@ -190,13 +190,7 @@ public class MigrationService {
         try {
             List<Player> allPlayers = playerRepository.findAll();
             allPlayers.forEach(player -> {
-                Long id = player.getId();
-                com.learn.fantasy.dto.player.Player response = premierLeaguApiClient.getPlayerHistoty(id);
-                List<History> history = response.getHistory();
-                history.forEach(h -> {
-                    PlayerHistory playerHistory = convertPlayerHistory(player, h);
-                    playerHistoryRepository.save(playerHistory);
-                });
+                savePlayerHistory(player);
             });
             LOG.info("Finished saving PlayerHistory content...");
             return SUCCESS;
@@ -204,6 +198,16 @@ public class MigrationService {
             e.printStackTrace();
             return FAILURE;
         }
+    }
+
+    public void savePlayerHistory(Player player) {
+        Long id = player.getId();
+        com.learn.fantasy.dto.player.Player response = premierLeaguApiClient.getPlayerHistoty(id);
+        List<History> history = response.getHistory();
+        history.forEach(h -> {
+            PlayerHistory playerHistory = convertPlayerHistory(player, h);
+            playerHistoryRepository.save(playerHistory);
+        });
     }
 
     private PlayerHistory convertPlayerHistory(Player player, History h) {

@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class MemberPlayer {
     private Entry_history entry_history;
-    private List<String> automatic_subs;
+    private List<Automatic_subs> automatic_subs;
     private List<Picks> picks;
     private String active_chip;
 
@@ -19,11 +19,11 @@ public class MemberPlayer {
         this.entry_history = entry_history;
     }
 
-    public List<String> getAutomatic_subs() {
+    public List<Automatic_subs> getAutomatic_subs() {
         return automatic_subs;
     }
 
-    public void setAutomatic_subs(List<String> automatic_subs) {
+    public void setAutomatic_subs(List<Automatic_subs> automatic_subs) {
         this.automatic_subs = automatic_subs;
     }
 
