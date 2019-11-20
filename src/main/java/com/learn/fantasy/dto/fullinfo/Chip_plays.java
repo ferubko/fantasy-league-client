@@ -5,7 +5,6 @@ package com.learn.fantasy.dto.fullinfo;
  */
 public class Chip_plays {
     private String chip_name;
-
     private long num_played;
 
     public String getChip_name() {
@@ -26,6 +25,9 @@ public class Chip_plays {
 
     @Override
     public String toString() {
-        return "ClassPojo [chip_name = " + chip_name + ", num_played = " + num_played + "]";
+        return "Chip_plays{" +
+                "chip_name='" + chip_name + '\'' +
+                ", num_played=" + num_played +
+                '}';
     }
 }

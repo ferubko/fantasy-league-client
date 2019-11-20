@@ -9,9 +9,7 @@ import java.util.List;
  */
 public class Standings {
     private boolean has_next;
-
     private int page;
-
     private List<Results> results;
 
     public boolean isHas_next() {

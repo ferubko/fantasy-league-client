@@ -4,22 +4,14 @@ package com.learn.fantasy.dto.legueInfo;
  * Created by stepanferubko
  */
 public class Results {
-    private String entry_name;
-
-    private int rank_sort;
-
-    private long entry;
-
-    private int total;
-
-    private int event_total;
-
-    private int rank;
-
-    private int last_rank;
-
     private long id;
-
+    private String entry_name;
+    private int rank_sort;
+    private long entry;
+    private int total;
+    private int event_total;
+    private int rank;
+    private int last_rank;
     private String player_name;
 
     public String getEntry_name() {

@@ -10,49 +10,28 @@ import java.util.List;
  */
 public class Game_settings {
     private String league_max_size_public_h2h;
-
     private String league_points_h2h_win;
-
     private String league_max_size_public_classic;
-
     private String timezone;
-
     private String league_join_public_max;
     @JsonProperty("ui_special_shirt_exclusions")
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-
     private List<String> ui_special_shirt_exclusions;
-
     private String sys_vice_captain_enabled;
-
     private String cup_start_event_id;
-
     private String transfers_sell_on_fee;
-
     private String league_points_h2h_lose;
-
     private String squad_squadsize;
-
     private String squad_total_spend;
-
     private String ui_use_special_shirts;
-
     private String league_max_ko_rounds_private_h2h;
-
     private String league_join_private_max;
-
     private String squad_team_limit;
-
     private String league_prefix_public;
-
     private String league_points_h2h_draw;
-
     private String stats_form_days;
-
     private String ui_currency_multiplier;
-
     private String league_max_size_private_h2h;
-
     private String squad_squadplay;
 
     public String getLeague_max_size_public_h2h() {

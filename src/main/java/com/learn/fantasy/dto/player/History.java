@@ -7,61 +7,33 @@ import java.util.Date;
  */
 public class History {
     private int transfers_balance;
-
     private long opponent_team;
-
     private int own_goals;
-
     private int bonus;
-
     private int total_points;
-
     private int clean_sheets;
-
     private int goals_conceded;
-
     private Date kickoff_time;
-
     private int red_cards;
-
     private int team_a_score;
-
     private double influence;
-
     private int saves;
-
     private int assists;
-
     private int transfers_in;
-
     private double creativity;
-
     private int value;
-
     private long selected;
-
     private long element;
-
     private int goals_scored;
-
     private boolean was_home;
-
     private int bps;
-
     private int minutes;
-
     private int penalties_missed;
-
     private int yellow_cards;
-
     private long fixture;
-
     private int transfers_out;
-
     private int round;
-
     private double threat;
-
     private double ict_index;
     private int team_h_score;
     private int penalties_saved;

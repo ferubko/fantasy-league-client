@@ -6,46 +6,26 @@ import java.util.Date;
  * Created by stepanferubko
  */
 public class MemberContent {
-    private int last_deadline_total_transfers;
-
-    private int favourite_team;
-
-    private Date joined_time;
-
-    private Leagues leagues;
-
-    private int summary_overall_points;
-
-    private int current_event;
-
-    private String player_region_iso_code_short;
-
-    private String player_region_name;
-
-    private int last_deadline_value;
-
-    private String player_last_name;
-
-    private String player_region_iso_code_long;
-
-    private int summary_overall_rank;
-
-    private int last_deadline_bank;
-
-    private int summary_event_points;
-
-    private String kit;
-
-    private String name;
-
     private Long id;
-
+    private int last_deadline_total_transfers;
+    private int favourite_team;
+    private Date joined_time;
+    private Leagues leagues;
+    private int summary_overall_points;
+    private int current_event;
+    private String player_region_iso_code_short;
+    private String player_region_name;
+    private int last_deadline_value;
+    private String player_last_name;
+    private String player_region_iso_code_long;
+    private int summary_overall_rank;
+    private int last_deadline_bank;
+    private int summary_event_points;
+    private String kit;
+    private String name;
     private int started_event;
-
     private String player_first_name;
-
     private int player_region_id;
-
     private int summary_event_rank;
 
     public int getLast_deadline_total_transfers() {
@@ -214,5 +194,32 @@ public class MemberContent {
 
     public void setSummary_event_rank(int summary_event_rank) {
         this.summary_event_rank = summary_event_rank;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberContent{" +
+                "id=" + id +
+                ", last_deadline_total_transfers=" + last_deadline_total_transfers +
+                ", favourite_team=" + favourite_team +
+                ", joined_time=" + joined_time +
+                ", leagues=" + leagues +
+                ", summary_overall_points=" + summary_overall_points +
+                ", current_event=" + current_event +
+                ", player_region_iso_code_short='" + player_region_iso_code_short + '\'' +
+                ", player_region_name='" + player_region_name + '\'' +
+                ", last_deadline_value=" + last_deadline_value +
+                ", player_last_name='" + player_last_name + '\'' +
+                ", player_region_iso_code_long='" + player_region_iso_code_long + '\'' +
+                ", summary_overall_rank=" + summary_overall_rank +
+                ", last_deadline_bank=" + last_deadline_bank +
+                ", summary_event_points=" + summary_event_points +
+                ", kit='" + kit + '\'' +
+                ", name='" + name + '\'' +
+                ", started_event=" + started_event +
+                ", player_first_name='" + player_first_name + '\'' +
+                ", player_region_id=" + player_region_id +
+                ", summary_event_rank=" + summary_event_rank +
+                '}';
     }
 }

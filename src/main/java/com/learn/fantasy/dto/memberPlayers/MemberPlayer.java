@@ -7,11 +7,8 @@ import java.util.List;
  */
 public class MemberPlayer {
     private Entry_history entry_history;
-
     private List<String> automatic_subs;
-
     private List<Picks> picks;
-
     private String active_chip;
 
     public Entry_history getEntry_history() {
@@ -44,5 +41,15 @@ public class MemberPlayer {
 
     public void setActive_chip(String active_chip) {
         this.active_chip = active_chip;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberPlayer{" +
+                "entry_history=" + entry_history +
+                ", automatic_subs=" + automatic_subs +
+                ", picks=" + picks +
+                ", active_chip='" + active_chip + '\'' +
+                '}';
     }
 }

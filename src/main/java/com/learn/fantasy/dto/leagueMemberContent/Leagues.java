@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class Leagues {
     private List<Classic> classic;
-
     private List<String> h2h;
 
     public List<Classic> getClassic() {
@@ -24,5 +23,13 @@ public class Leagues {
 
     public void setH2h(List<String> h2h) {
         this.h2h = h2h;
+    }
+
+    @Override
+    public String toString() {
+        return "Leagues{" +
+                "classic=" + classic +
+                ", h2h=" + h2h +
+                '}';
     }
 }

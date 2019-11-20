@@ -6,9 +6,7 @@ package com.learn.fantasy.dto.legueInfo;
  */
 public class LeagueResponse {
     private New_entries new_entries;
-
     private League league;
-
     private Standings standings;
 
     public New_entries getNew_entries() {
@@ -33,5 +31,14 @@ public class LeagueResponse {
 
     public void setStandings(Standings standings) {
         this.standings = standings;
+    }
+
+    @Override
+    public String toString() {
+        return "LeagueResponse{" +
+                "new_entries=" + new_entries +
+                ", league=" + league +
+                ", standings=" + standings +
+                '}';
     }
 }

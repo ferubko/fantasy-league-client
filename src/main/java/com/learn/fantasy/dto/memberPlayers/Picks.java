@@ -5,13 +5,9 @@ package com.learn.fantasy.dto.memberPlayers;
  */
 public class Picks {
     private boolean is_captain;
-
     private long multiplier;
-
     private long position;
-
     private boolean is_vice_captain;
-
     private long element;
 
     public boolean is_captain() {
@@ -52,5 +48,16 @@ public class Picks {
 
     public void setElement(long element) {
         this.element = element;
+    }
+
+    @Override
+    public String toString() {
+        return "Picks{" +
+                "is_captain=" + is_captain +
+                ", multiplier=" + multiplier +
+                ", position=" + position +
+                ", is_vice_captain=" + is_vice_captain +
+                ", element=" + element +
+                '}';
     }
 }

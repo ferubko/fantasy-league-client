@@ -7,46 +7,26 @@ import java.util.List;
  * Created by stepanferubko
  */
 public class Events {
-    private boolean data_checked;
-
-    private int deadline_time_game_offset;
-
-    private int average_entry_score;
-
-    private boolean is_previous;
-
-    private int most_selected;
-
-    private int most_transferred_in;
-
-    private boolean finished;
-
-    private int most_captained;
-
-    private List<Chip_plays> chip_plays;
-
-    private int top_element;
-
-    private Top_element_info top_element_info;
-
-    private boolean is_next;
-
-    private int most_vice_captained;
-
-    private long deadline_time_epoch;
-
-    private String name;
-
-    private Date deadline_time;
-
-    private int transfers_made;
-
     private long id;
-
-    private long highest_scoring_entry;
-
+    private boolean data_checked;
+    private int deadline_time_game_offset;
+    private int average_entry_score;
+    private boolean is_previous;
+    private int most_selected;
+    private int most_transferred_in;
+    private boolean finished;
+    private int most_captained;
+    private List<Chip_plays> chip_plays;
+    private int top_element;
+    private Top_element_info top_element_info;
+    private boolean is_next;
+    private int most_vice_captained;
+    private long deadline_time_epoch;
+    private String name;
+    private Date deadline_time;
+    private int transfers_made;
+  private long highest_scoring_entry;
     private boolean is_current;
-
     private int highest_score;
 
     public boolean isData_checked() {

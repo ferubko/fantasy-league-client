@@ -5,11 +5,8 @@ package com.learn.fantasy.dto.fullinfo;
  */
 public class Phases {
     private int start_event;
-
     private int stop_event;
-
     private String name;
-
     private long id;
 
     public int getStart_event() {
@@ -46,6 +43,11 @@ public class Phases {
 
     @Override
     public String toString() {
-        return "ClassPojo [start_event = " + start_event + ", stop_event = " + stop_event + ", name = " + name + ", id = " + id + "]";
+        return "Phases{" +
+                "start_event=" + start_event +
+                ", stop_event=" + stop_event +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

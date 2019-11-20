@@ -84,6 +84,15 @@ public class FullInfo {
 
     @Override
     public String toString() {
-        return "ClassPojo [teams = " + teams + ", elements = " + elements + ", element_types = " + element_types + ", events = " + events + ", phases = " + phases + "]";
+        return "FullInfo{" +
+                "teams=" + teams +
+                ", total_players=" + total_players +
+                ", elements=" + elements +
+                ", element_stats=" + element_stats +
+                ", element_types=" + element_types +
+                ", events=" + events +
+                ", game_settings=" + game_settings +
+                ", phases=" + phases +
+                '}';
     }
 }

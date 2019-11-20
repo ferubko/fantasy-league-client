@@ -6,24 +6,15 @@ import java.util.List;
  * Created by stepanferubko
  */
 public class Element_types {
-    private String singular_name;
-
-    private int squad_min_play;
-
-    private int squad_select;
-
-    private int squad_max_play;
-
-    private boolean ui_shirt_specific;
-
-    private String singular_name_short;
-
-    private String plural_name;
-
     private long id;
-
+    private String singular_name;
+    private int squad_min_play;
+    private int squad_select;
+    private int squad_max_play;
+    private boolean ui_shirt_specific;
+    private String singular_name_short;
+    private String plural_name;
     private String plural_name_short;
-
     private List<Integer> sub_positions_locked;
 
     public String getSingular_name() {
@@ -108,6 +99,17 @@ public class Element_types {
 
     @Override
     public String toString() {
-        return "ClassPojo [singular_name = " + singular_name + ", squad_min_play = " + squad_min_play + ", squad_select = " + squad_select + ", squad_max_play = " + squad_max_play + ", ui_shirt_specific = " + ui_shirt_specific + ", singular_name_short = " + singular_name_short + ", plural_name = " + plural_name + ", id = " + id + ", plural_name_short = " + plural_name_short + ", sub_positions_locked = " + sub_positions_locked + "]";
+        return "Element_types{" +
+                "singular_name='" + singular_name + '\'' +
+                ", squad_min_play=" + squad_min_play +
+                ", squad_select=" + squad_select +
+                ", squad_max_play=" + squad_max_play +
+                ", ui_shirt_specific=" + ui_shirt_specific +
+                ", singular_name_short='" + singular_name_short + '\'' +
+                ", plural_name='" + plural_name + '\'' +
+                ", id=" + id +
+                ", plural_name_short='" + plural_name_short + '\'' +
+                ", sub_positions_locked=" + sub_positions_locked +
+                '}';
     }
 }

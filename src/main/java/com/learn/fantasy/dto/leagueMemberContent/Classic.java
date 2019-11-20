@@ -6,36 +6,21 @@ import java.util.Date;
  * Created by stepanferubko
  */
 public class Classic {
-    private String admin_entry;
-
-    private String scoring;
-
-    private int entry_rank;
-
-    private Date created;
-
-    private int max_entries;
-
-    private int start_event;
-
-    private String league_type;
-
-    private String name;
-
-    private boolean closed;
-
-    private int rank;
-
-    private String entry_last_rank;
-
-    private boolean entry_can_admin;
-
-    private String short_name;
-
     private Long id;
-
+    private String admin_entry;
+    private String scoring;
+    private int entry_rank;
+    private Date created;
+    private int max_entries;
+    private int start_event;
+    private String league_type;
+    private String name;
+    private boolean closed;
+    private int rank;
+    private String entry_last_rank;
+    private boolean entry_can_admin;
+    private String short_name;
     private boolean entry_can_leave;
-
     private boolean entry_can_invite;
 
     public String getAdmin_entry() {
@@ -164,5 +149,27 @@ public class Classic {
 
     public void setEntry_can_invite(boolean entry_can_invite) {
         this.entry_can_invite = entry_can_invite;
+    }
+
+    @Override
+    public String toString() {
+        return "Classic{" +
+                "id=" + id +
+                ", admin_entry='" + admin_entry + '\'' +
+                ", scoring='" + scoring + '\'' +
+                ", entry_rank=" + entry_rank +
+                ", created=" + created +
+                ", max_entries=" + max_entries +
+                ", start_event=" + start_event +
+                ", league_type='" + league_type + '\'' +
+                ", name='" + name + '\'' +
+                ", closed=" + closed +
+                ", rank=" + rank +
+                ", entry_last_rank='" + entry_last_rank + '\'' +
+                ", entry_can_admin=" + entry_can_admin +
+                ", short_name='" + short_name + '\'' +
+                ", entry_can_leave=" + entry_can_leave +
+                ", entry_can_invite=" + entry_can_invite +
+                '}';
     }
 }

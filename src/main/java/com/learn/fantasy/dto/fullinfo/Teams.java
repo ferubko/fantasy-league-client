@@ -5,43 +5,24 @@ package com.learn.fantasy.dto.fullinfo;
  */
 public class Teams {
     private int strength_defence_away;
-
     private long code;
-
     private int strength;
-
     private boolean unavailable;
-
     private int strength_overall_away;
-
     private int draw;
-
     private String team_division;
-
     private int played;
-
     private int strength_attack_away;
-
     private int points;
-
     private int loss;
-
     private int strength_defence_home;
-
     private String form;
-
     private int strength_attack_home;
-
     private int strength_overall_home;
-
     private String name;
-
     private String short_name;
-
     private long id;
-
     private int position;
-
     private int win;
 
     public int getStrength_defence_away() {
@@ -206,6 +187,27 @@ public class Teams {
 
     @Override
     public String toString() {
-        return "ClassPojo [strength_defence_away = " + strength_defence_away + ", code = " + code + ", strength = " + strength + ", unavailable = " + unavailable + ", strength_overall_away = " + strength_overall_away + ", draw = " + draw + ", team_division = " + team_division + ", played = " + played + ", strength_attack_away = " + strength_attack_away + ", points = " + points + ", loss = " + loss + ", strength_defence_home = " + strength_defence_home + ", form = " + form + ", strength_attack_home = " + strength_attack_home + ", strength_overall_home = " + strength_overall_home + ", name = " + name + ", short_name = " + short_name + ", id = " + id + ", position = " + position + ", win = " + win + "]";
+        return "Teams{" +
+                "strength_defence_away=" + strength_defence_away +
+                ", code=" + code +
+                ", strength=" + strength +
+                ", unavailable=" + unavailable +
+                ", strength_overall_away=" + strength_overall_away +
+                ", draw=" + draw +
+                ", team_division='" + team_division + '\'' +
+                ", played=" + played +
+                ", strength_attack_away=" + strength_attack_away +
+                ", points=" + points +
+                ", loss=" + loss +
+                ", strength_defence_home=" + strength_defence_home +
+                ", form='" + form + '\'' +
+                ", strength_attack_home=" + strength_attack_home +
+                ", strength_overall_home=" + strength_overall_home +
+                ", name='" + name + '\'' +
+                ", short_name='" + short_name + '\'' +
+                ", id=" + id +
+                ", position=" + position +
+                ", win=" + win +
+                '}';
     }
 }

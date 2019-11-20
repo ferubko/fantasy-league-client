@@ -7,9 +7,7 @@ import java.util.List;
  */
 public class Player {
     private List<History_past> history_past;
-
     private List<History> history;
-
     private List<Fixtures> fixtures;
 
     public List<History_past> getHistory_past() {

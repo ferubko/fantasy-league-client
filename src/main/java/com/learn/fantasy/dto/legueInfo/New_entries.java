@@ -7,9 +7,7 @@ import java.util.List;
  */
 public class New_entries {
     private boolean has_next;
-
     private int page;
-
     private List<String> results;
 
     public boolean isHas_next() {

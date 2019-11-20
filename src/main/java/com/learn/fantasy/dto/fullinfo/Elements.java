@@ -4,110 +4,58 @@ package com.learn.fantasy.dto.fullinfo;
  * Created by stepanferubko
  */
 public class Elements {
-    private int own_goals;
-
-    private int bonus;
-
-    private int total_points;
-
-    private double influence;
-
-    private String squad_number;
-
-    private int saves;
-
-    private int transfers_in;
-
-    private double value_form;
-
-    private int now_cost;
-
     private long id;
-
+    private int own_goals;
+    private int bonus;
+    private int total_points;
+    private double influence;
+    private String squad_number;
+    private int saves;
+    private int transfers_in;
+    private double value_form;
+    private int now_cost;
     private double creativity;
-
     private int goals_scored;
-
     private int minutes;
-
     private int yellow_cards;
-
     private double selected_by_percent;
-
     private boolean in_dreamteam;
-
     private int cost_change_event_fall;
-
     private String second_name;
-
     private int cost_change_event;
-
     private double points_per_game;
-
     private String web_name;
-
     private String status;
-
     private String chance_of_playing_this_round;
-
     private long code;
-
     private int clean_sheets;
-
     private int goals_conceded;
-
     private int cost_change_start;
-
     private int red_cards;
-
     private long element_type;
-
     private int dreamteam_count;
-
     private int assists;
-
     private double ep_this;
-
     private String chance_of_playing_next_round;
-
     private String first_name;
-
     private String news_added;
-
     private String news;
-
     private int bps;
-
     private double ep_next;
-
     private int transfers_out_event;
-
     private int penalties_missed;
-
     private String photo;
-
     private int transfers_in_event;
-
     private long team;
-
     private int cost_change_start_fall;
-
     private int event_points;
-
     private boolean special;
-
     private long team_code;
-
     private int transfers_out;
-
     private double form;
-
     private double threat;
-
     private double value_season;
-
     private double ict_index;
-
     private int penalties_saved;
 
     public int getOwn_goals() {
@@ -536,6 +484,60 @@ public class Elements {
 
     @Override
     public String toString() {
-        return "ClassPojo [own_goals = " + own_goals + ", bonus = " + bonus + ", total_points = " + total_points + ", influence = " + influence + ", squad_number = " + squad_number + ", saves = " + saves + ", transfers_in = " + transfers_in + ", value_form = " + value_form + ", now_cost = " + now_cost + ", id = " + id + ", creativity = " + creativity + ", goals_scored = " + goals_scored + ", minutes = " + minutes + ", yellow_cards = " + yellow_cards + ", selected_by_percent = " + selected_by_percent + ", in_dreamteam = " + in_dreamteam + ", cost_change_event_fall = " + cost_change_event_fall + ", second_name = " + second_name + ", cost_change_event = " + cost_change_event + ", points_per_game = " + points_per_game + ", web_name = " + web_name + ", status = " + status + ", chance_of_playing_this_round = " + chance_of_playing_this_round + ", code = " + code + ", clean_sheets = " + clean_sheets + ", goals_conceded = " + goals_conceded + ", cost_change_start = " + cost_change_start + ", red_cards = " + red_cards + ", element_type = " + element_type + ", dreamteam_count = " + dreamteam_count + ", assists = " + assists + ", ep_this = " + ep_this + ", chance_of_playing_next_round = " + chance_of_playing_next_round + ", first_name = " + first_name + ", news_added = " + news_added + ", news = " + news + ", bps = " + bps + ", ep_next = " + ep_next + ", transfers_out_event = " + transfers_out_event + ", penalties_missed = " + penalties_missed + ", photo = " + photo + ", transfers_in_event = " + transfers_in_event + ", team = " + team + ", cost_change_start_fall = " + cost_change_start_fall + ", event_points = " + event_points + ", special = " + special + ", team_code = " + team_code + ", transfers_out = " + transfers_out + ", form = " + form + ", threat = " + threat + ", value_season = " + value_season + ", ict_index = " + ict_index + ", penalties_saved = " + penalties_saved + "]";
+        return "Elements{" +
+                "own_goals=" + own_goals +
+                ", bonus=" + bonus +
+                ", total_points=" + total_points +
+                ", influence=" + influence +
+                ", squad_number='" + squad_number + '\'' +
+                ", saves=" + saves +
+                ", transfers_in=" + transfers_in +
+                ", value_form=" + value_form +
+                ", now_cost=" + now_cost +
+                ", id=" + id +
+                ", creativity=" + creativity +
+                ", goals_scored=" + goals_scored +
+                ", minutes=" + minutes +
+                ", yellow_cards=" + yellow_cards +
+                ", selected_by_percent=" + selected_by_percent +
+                ", in_dreamteam=" + in_dreamteam +
+                ", cost_change_event_fall=" + cost_change_event_fall +
+                ", second_name='" + second_name + '\'' +
+                ", cost_change_event=" + cost_change_event +
+                ", points_per_game=" + points_per_game +
+                ", web_name='" + web_name + '\'' +
+                ", status='" + status + '\'' +
+                ", chance_of_playing_this_round='" + chance_of_playing_this_round + '\'' +
+                ", code=" + code +
+                ", clean_sheets=" + clean_sheets +
+                ", goals_conceded=" + goals_conceded +
+                ", cost_change_start=" + cost_change_start +
+                ", red_cards=" + red_cards +
+                ", element_type=" + element_type +
+                ", dreamteam_count=" + dreamteam_count +
+                ", assists=" + assists +
+                ", ep_this=" + ep_this +
+                ", chance_of_playing_next_round='" + chance_of_playing_next_round + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", news_added='" + news_added + '\'' +
+                ", news='" + news + '\'' +
+                ", bps=" + bps +
+                ", ep_next=" + ep_next +
+                ", transfers_out_event=" + transfers_out_event +
+                ", penalties_missed=" + penalties_missed +
+                ", photo='" + photo + '\'' +
+                ", transfers_in_event=" + transfers_in_event +
+                ", team=" + team +
+                ", cost_change_start_fall=" + cost_change_start_fall +
+                ", event_points=" + event_points +
+                ", special=" + special +
+                ", team_code=" + team_code +
+                ", transfers_out=" + transfers_out +
+                ", form=" + form +
+                ", threat=" + threat +
+                ", value_season=" + value_season +
+                ", ict_index=" + ict_index +
+                ", penalties_saved=" + penalties_saved +
+                '}';
     }
 }

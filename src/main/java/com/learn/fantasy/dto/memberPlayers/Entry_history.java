@@ -5,25 +5,15 @@ package com.learn.fantasy.dto.memberPlayers;
  */
 public class Entry_history {
     private int rank_sort;
-
     private int event_transfers;
-
     private int bank;
-
     private int total_points;
-
     private int rank;
-
     private int event;
-
     private int overall_rank;
-
     private int event_transfers_cost;
-
     private int points_on_bench;
-
     private int value;
-
     private int points;
 
     public int getRank_sort() {
@@ -112,5 +102,22 @@ public class Entry_history {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return "Entry_history{" +
+                "rank_sort=" + rank_sort +
+                ", event_transfers=" + event_transfers +
+                ", bank=" + bank +
+                ", total_points=" + total_points +
+                ", rank=" + rank +
+                ", event=" + event +
+                ", overall_rank=" + overall_rank +
+                ", event_transfers_cost=" + event_transfers_cost +
+                ", points_on_bench=" + points_on_bench +
+                ", value=" + value +
+                ", points=" + points +
+                '}';
     }
 }

@@ -5,7 +5,6 @@ package com.learn.fantasy.dto.fullinfo;
  */
 public class Top_element_info {
     private long id;
-
     private int points;
 
     public long getId() {
@@ -26,6 +25,9 @@ public class Top_element_info {
 
     @Override
     public String toString() {
-        return "ClassPojo [id = " + id + ", points = " + points + "]";
+        return "Top_element_info{" +
+                "id=" + id +
+                ", points=" + points +
+                '}';
     }
 }

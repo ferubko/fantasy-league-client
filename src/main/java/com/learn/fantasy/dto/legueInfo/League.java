@@ -6,26 +6,16 @@ import java.util.Date;
  * Created by stepanferubko
  */
 public class League {
-    private String start_event;
-
-    private long admin_entry;
-
-    private String scoring;
-
-    private String league_type;
-
-    private Date created;
-
-    private String name;
-
-    private boolean closed;
-
-    private int rank;
-
     private long id;
-
-    private String code_privacy;
-
+    private String start_event;
+    private long admin_entry;
+    private String scoring;
+    private String league_type;
+    private Date created;
+    private String name;
+    private boolean closed;
+    private int rank;
+      private String code_privacy;
     private int max_entries;
 
     public League() {

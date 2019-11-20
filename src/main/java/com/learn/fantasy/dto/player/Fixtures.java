@@ -7,29 +7,17 @@ import java.util.Date;
  */
 public class Fixtures {
     private long code;
-
     private boolean is_home;
-
     private boolean provisional_start_time;
-
     private int minutes;
-
     private Date kickoff_time;
-
     private int team_h;
-
     private boolean finished;
-
     private String team_a_score;
-
     private int team_a;
-
     private int difficulty;
-
     private String event_name;
-
     private int event;
-
     private String team_h_score;
 
     public long getCode() {
