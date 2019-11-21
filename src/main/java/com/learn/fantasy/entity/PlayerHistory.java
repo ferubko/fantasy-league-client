@@ -26,6 +26,7 @@ public class PlayerHistory implements Serializable {
     private Long opponentTeam;
     @Column(name = "totalPoints")
     private Integer totalPoints;
+    @Basic
     @Column(name = "kickoffTime")
     private Date kickoffTime;
     @ManyToOne
