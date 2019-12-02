@@ -4,7 +4,6 @@ import com.learn.fantasy.service.LeagueService;
 import com.learn.fantasy.vo.LeagueMemberVO;
 import com.learn.fantasy.vo.LeagueVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 /**

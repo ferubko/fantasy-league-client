@@ -26,39 +26,31 @@ public class PlayerRestController extends AbstractController {
     private SynchronizeService synchronizeService;
 
     @RequestMapping(value = "/types", method = RequestMethod.GET)
-    @CrossOrigin
     public List<PlayerTypeVO> getPlayerTypes() {
         return playersService.getPlayerTypes();
     }
 
     @RequestMapping(value = "/size", method = RequestMethod.GET)
-    @CrossOrigin
     public int getPlayerSize() {
         return synchronizeService.checkIfPlayersExist();
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.GET)
-    @CrossOrigin
     public List<TeamVO> getTeams() {
         return playersService.getTeams();
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @CrossOrigin
     public List<PlayerVO> getPlayers() {
         return playersService.getPlayersEntity();
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-//    @CrossOrigin
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
     public List<PlayerVO> getPlayers(@RequestBody PlayerSearchRequest playerSearchRequest) {
         return playersService.getPlayersEntityById(playerSearchRequest);
     }
 
     @RequestMapping(value = "/details/{id}", method = RequestMethod.POST)
-//    @CrossOrigin
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
     public PlayerVO getPlayer(@PathVariable("id") Long playerId) {
         return playersService.getPlayerDetailsById(playerId);
     }

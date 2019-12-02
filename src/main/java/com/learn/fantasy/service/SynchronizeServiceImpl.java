@@ -44,7 +44,7 @@ public class SynchronizeServiceImpl implements SynchronizeService {
                 AtomicInteger added = new AtomicInteger(0);
                 missingIds.forEach(elId -> {
                     boolean ifExist = playerRepository.existsById(elId);
-                    LOG.info("id: "+elId+" exist: "+ifExist);
+                    LOG.info("id: " + elId + " exist: " + ifExist);
                     if (ifExist) {
                         playerHistoryRepository.removePlayerHistoryByPlayerId(elId);
                         playerRepository.deleteById(elId);
