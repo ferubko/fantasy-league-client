@@ -85,6 +85,7 @@ public class PlayersService {
         return histories.stream().map(history -> modelMapper.map(history, PlayerHistoryVO.class)).collect(Collectors.toList());
     }
 
+    @Cacheable(value = "playerDetails")
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public PlayerVO getPlayerDetailsById(Long playerId) {
         LOG.info("Get Player Details by id :" + playerId);

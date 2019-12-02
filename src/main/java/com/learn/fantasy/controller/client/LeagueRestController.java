@@ -4,23 +4,22 @@ import com.learn.fantasy.service.LeagueService;
 import com.learn.fantasy.vo.LeagueMemberVO;
 import com.learn.fantasy.vo.LeagueVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpRequest;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by stepanferubko
  */
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/leagueMember")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class LeagueRestController {
 
     @Autowired
     private LeagueService leagueService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
     public LeagueVO getAllLeagueMembers() {
         return leagueService.getLeagueMembers();
     }
