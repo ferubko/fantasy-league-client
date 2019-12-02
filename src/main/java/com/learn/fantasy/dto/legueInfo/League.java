@@ -15,7 +15,7 @@ public class League {
     private String name;
     private boolean closed;
     private int rank;
-      private String code_privacy;
+    private String code_privacy;
     private int max_entries;
 
     public League() {

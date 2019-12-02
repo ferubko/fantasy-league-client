@@ -5,7 +5,7 @@ package com.learn.fantasy.dto.memberPlayers;
  */
 public class Automatic_subs {
     private long entry;
-   private long element_out;
+    private long element_out;
     private long element_in;
     private long event;
 

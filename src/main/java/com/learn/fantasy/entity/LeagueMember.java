@@ -2,7 +2,6 @@ package com.learn.fantasy.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by stepanferubko

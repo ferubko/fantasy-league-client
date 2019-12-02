@@ -25,7 +25,7 @@ public class Events {
     private String name;
     private Date deadline_time;
     private int transfers_made;
-  private long highest_scoring_entry;
+    private long highest_scoring_entry;
     private boolean is_current;
     private int highest_score;
 
