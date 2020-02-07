@@ -18,7 +18,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/player")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class PlayerRestController extends AbstractController {
 
     @Autowired
@@ -32,12 +31,12 @@ public class PlayerRestController extends AbstractController {
     }
 
     @RequestMapping(value = "/api/sync/missing/data", method = RequestMethod.GET)
-    public int syncMissingData() throws InternalServiceInvocationException {
+    public int syncMissingData() {
         return synchronizeService.executeSyncMissingData();
     }
 
     @RequestMapping(value = "/api/sync/existing/data", method = RequestMethod.GET)
-    public int syncExistingData() throws InternalServiceInvocationException {
+    public int syncExistingData()  {
         return synchronizeService.executeSyncExistingData();
     }
 

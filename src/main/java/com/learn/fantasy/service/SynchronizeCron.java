@@ -12,13 +12,13 @@ public class SynchronizeCron {
 
     //    @Scheduled(cron = "0 59 23 28-31 * ?")
     @Scheduled(cron = "${мissingDataCron:0 59 23 28-31 * ?}")
-    public int syncMissingData() throws InternalServiceInvocationException {
+    public int syncMissingData() {
         return synchronizeService.executeSyncMissingData();
     }
 
     //    @Scheduled(cron = "0 59 23 * * TUE,FRI")
     @Scheduled(cron = "${existingDataCron:0 59 23 * * TUE,FRI}")
-    public int syncExistingData() throws InternalServiceInvocationException {
+    public int syncExistingData() {
         return synchronizeService.executeSyncExistingData();
     }
 }

@@ -6,6 +6,7 @@ import com.learn.fantasy.entity.Player;
 import com.learn.fantasy.exception.InternalServiceInvocationException;
 import com.learn.fantasy.repository.PlayerHistoryRepository;
 import com.learn.fantasy.repository.PlayerRepository;
+import com.learn.fantasy.vo.TransferSynchResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,7 +16,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class SynchronizeServiceImpl implements SynchronizeService {
@@ -28,66 +28,89 @@ public class SynchronizeServiceImpl implements SynchronizeService {
     private MigrationService migrationService;
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public int executeSyncMissingData() throws InternalServiceInvocationException {
-        LOG.info("Started execute Sync Missing Data...");
-        FullInfo fullInformation = migrationService.getFullInfo();
-        if (fullInformation != null) {
-            List<Long> playerIds = playerRepository.findPlayerIds();
-            int transfers = synchronizeTransfers(fullInformation, playerIds);
-            int missedPlayers = synchronizeMissedPlayers(fullInformation, playerIds);
-            return transfers + missedPlayers;
-        }
-        LOG.info("There is no data...");
-        return 0;
-    }
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public int executeSyncExistingData() throws InternalServiceInvocationException {
-        LOG.info("Started execute Sync Existing Data...");
-        FullInfo fullInformation = migrationService.getFullInfo();
-        if (fullInformation != null) {
-            List<Long> playerIds = playerRepository.findPlayerIds();
-            return synchronizePlayerInformation(fullInformation, playerIds);
-        }
-        LOG.info("There is no data...");
-        return 0;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public int synchronizeTransfers(FullInfo fullInformation, List<Long> playerIds) throws InternalServiceInvocationException {
-        LOG.info("Started synchronizing transfers...");
+    public TransferSynchResultVO collectActualPlayerInformation() throws InternalServiceInvocationException {
+        LOG.info("Started collect actual player Information...");
+        TransferSynchResultVO transferSynchResultVO = new TransferSynchResultVO();
         try {
-            List<Elements> elements = fullInformation.getElements();
-            List<Long> elementIds = elements.parallelStream().map(Elements::getId).collect(Collectors.toList());
-            Stream<Long> streamWithMissedPlayers = playerIds.parallelStream().filter(pl -> elementIds.stream().noneMatch(pl::equals));
-            Stream<Long> streamWithTransferredPlayers = elements.parallelStream().filter(el -> el.getStatus().equals("u")).map(Elements::getId);
-            List<Long> missedPlayers = Stream.concat(streamWithMissedPlayers, streamWithTransferredPlayers).collect(Collectors.toList());
-            AtomicInteger deleted = new AtomicInteger(0);
-            missedPlayers.forEach(elId -> {
-                playerHistoryRepository.removePlayerHistoryByPlayerId(elId);
-                playerRepository.deleteById(elId);
-                deleted.incrementAndGet();
-            });
-            LOG.info("Removed players: " + deleted.get());
-            return deleted.get();
+            FullInfo fullInformation = migrationService.getFullInfo();
+            if (fullInformation != null) {
+                List<Long> playerIds = playerRepository.findPlayerIds();
+                List<Elements> elements = fullInformation.getElements();
+                List<Long> oldPlayers = playerIds.parallelStream()
+                        .filter(pl -> elements.parallelStream().anyMatch(el -> pl == el.getId() && el.getStatus().equals("u")))
+                        .collect(Collectors.toList());
+                transferSynchResultVO.setIdOldPlayers(oldPlayers);
+                transferSynchResultVO.setRemovedPlayersCount(oldPlayers.size());
+                List<Player> newPlayers = elements.parallelStream()
+                        .filter(el -> playerIds.parallelStream().noneMatch(pl -> pl == el.getId()) && !el.getStatus().equals("u"))
+                        .map(p -> migrationService.convertPlayer(p))
+                        .collect(Collectors.toList());
+                transferSynchResultVO.setAddedPlayers(newPlayers);
+                transferSynchResultVO.setAddedPlayersCount(newPlayers.size());
+            }
+            return transferSynchResultVO;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new InternalServiceInvocationException("501", "Error in get statistic");
+            throw new InternalServiceInvocationException("501", "Error in collect actual player Information");
         }
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public int synchronizeMissedPlayers(FullInfo fullInformation, List<Long> playerIds) throws InternalServiceInvocationException {
+    public int executeSyncMissingData() {
+        LOG.info("Started execute Sync Missing Data...");
+        try {
+            TransferSynchResultVO transferSynchResultVO = collectActualPlayerInformation();
+            int transfers = synchronizeTransfers(transferSynchResultVO);
+            int missedPlayers = synchronizeMissedPlayers(transferSynchResultVO);
+            return transfers + missedPlayers;
+        } catch (InternalServiceInvocationException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public int executeSyncExistingData() {
+        LOG.info("Started execute Sync Existing Data...");
+        try {
+            FullInfo fullInformation = migrationService.getFullInfo();
+            if (fullInformation != null) {
+                List<Long> playerIds = playerRepository.findPlayerIds();
+                return synchronizePlayerInformation(fullInformation, playerIds);
+            }
+        } catch (InternalServiceInvocationException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        LOG.info("There is no data...");
+        return 0;
+    }
+
+    @Override
+    public int synchronizeTransfers(TransferSynchResultVO transferSynchResultVO) throws InternalServiceInvocationException {
+        LOG.info("Started synchronizing transfers...");
+        try {
+            List<Long> idOldPlayers = transferSynchResultVO.getIdOldPlayers();
+            int removedPlayersCount = transferSynchResultVO.getRemovedPlayersCount();
+            idOldPlayers.forEach(elId -> {
+                playerHistoryRepository.removePlayerHistoryByPlayerId(elId);
+                playerRepository.deleteById(elId);
+            });
+            LOG.info("Removed players: " + removedPlayersCount);
+            return removedPlayersCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new InternalServiceInvocationException("501", "Error in synchronize Transfers");
+        }
+    }
+
+    @Override
+    public int synchronizeMissedPlayers(TransferSynchResultVO transferSynchResultVO) throws InternalServiceInvocationException {
         LOG.info("Started synchronizing missed players...");
         try {
-            List<Elements> elements = fullInformation.getElements();
-            List<Player> players = elements.parallelStream()
-                    .filter(el -> playerIds.parallelStream().noneMatch(pl -> el.getId() == pl))
-                    .map(p -> migrationService.convertPlayer(p))
-                    .collect(Collectors.toList());
+            List<Player> players = transferSynchResultVO.getAddedPlayers();
             players.parallelStream().forEach(player -> {
                 LOG.info("Player: " + player.toString());
                 playerRepository.save(player);
@@ -97,19 +120,18 @@ public class SynchronizeServiceImpl implements SynchronizeService {
             return players.size();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new InternalServiceInvocationException("501", "Error in get statistic");
+            throw new InternalServiceInvocationException("501", "Error in synchronize Missed Players");
         }
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int synchronizePlayerInformation(FullInfo fullInformation, List<Long> playerIds) throws InternalServiceInvocationException {
         LOG.info("Started synchronize player info...");
         try {
             List<Elements> elements = fullInformation.getElements();
             AtomicInteger added = new AtomicInteger(0);
             elements.parallelStream()
-                    .filter(el -> playerIds.stream().anyMatch(pl -> pl == el.getId()))
+                    .filter(el -> playerIds.parallelStream().anyMatch(pl -> pl == el.getId()))
                     .map(p -> migrationService.convertPlayer(p))
                     .forEach(pl -> {
                         LOG.info("Player: " + pl.toString());
@@ -121,7 +143,7 @@ public class SynchronizeServiceImpl implements SynchronizeService {
             return added.get();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new InternalServiceInvocationException("501", "Error in get statistic");
+            throw new InternalServiceInvocationException("501", "Error in synchronize player Information");
         }
     }
 }
