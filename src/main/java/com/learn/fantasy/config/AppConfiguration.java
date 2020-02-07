@@ -98,6 +98,7 @@ public class AppConfiguration extends WebSecurityConfigurerAdapter implements We
                 .and().authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/register").permitAll()
+                .antMatchers("/player/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf()
                 .disable().exceptionHandling()

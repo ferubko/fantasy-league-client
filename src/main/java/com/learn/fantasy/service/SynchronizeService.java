@@ -1,11 +1,20 @@
 package com.learn.fantasy.service;
 
-import com.learn.fantasy.entity.Player;
+import com.learn.fantasy.dto.fullinfo.FullInfo;
+import com.learn.fantasy.exception.InternalServiceInvocationException;
+
+import java.util.List;
 
 public interface SynchronizeService {
-    int checkIfPlayersExist();
 
-    int synchronisePlayersInformation();
+    int executeSyncMissingData() throws InternalServiceInvocationException;
 
-    void synchronisePlayerHistory(Player player);
+    int executeSyncExistingData() throws InternalServiceInvocationException;
+
+    int synchronizeTransfers(FullInfo fullInformation, List<Long> playerIds) throws InternalServiceInvocationException;
+
+    int synchronizeMissedPlayers(FullInfo fullInformation, List<Long> playerIds) throws InternalServiceInvocationException;
+
+    int synchronizePlayerInformation(FullInfo fullInformation, List<Long> playerIds) throws InternalServiceInvocationException;
+
 }

@@ -1,6 +1,7 @@
 package com.learn.fantasy.controller.client;
 
 import com.learn.fantasy.dto.request.PlayerSearchRequest;
+import com.learn.fantasy.exception.InternalServiceInvocationException;
 import com.learn.fantasy.service.PlayersService;
 import com.learn.fantasy.service.SynchronizeService;
 import com.learn.fantasy.vo.PlayerHistoryVO;
@@ -30,9 +31,14 @@ public class PlayerRestController extends AbstractController {
         return playersService.getPlayerTypes();
     }
 
-    @RequestMapping(value = "/size", method = RequestMethod.GET)
-    public int getPlayerSize() {
-        return synchronizeService.checkIfPlayersExist();
+    @RequestMapping(value = "/api/sync/missing/data", method = RequestMethod.GET)
+    public int syncMissingData() throws InternalServiceInvocationException {
+        return synchronizeService.executeSyncMissingData();
+    }
+
+    @RequestMapping(value = "/api/sync/existing/data", method = RequestMethod.GET)
+    public int syncExistingData() throws InternalServiceInvocationException {
+        return synchronizeService.executeSyncExistingData();
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.GET)

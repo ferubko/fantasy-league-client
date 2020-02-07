@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -17,5 +18,6 @@ public interface PlayerHistoryRepository extends CrudRepository<PlayerHistory, L
     List<PlayerHistory> findByPlayerId(Long playerId);
 
     //    @Query("select h from PlayerHistory h where h.player.id=?1")
+    @Transactional
     void removePlayerHistoryByPlayerId(Long playerId);
 }

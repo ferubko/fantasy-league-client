@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api")
-public class ClientResponsecontroller extends AbstractController {
+public class ClientResponseController extends AbstractController {
 
     @Autowired
     private MigrationService migrationService;

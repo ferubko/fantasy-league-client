@@ -64,12 +64,12 @@ public class MigrationService {
 
     public String convertJsonToObject() {
         try {
-            LeagueResponse leagueResponse = FileReader.read1("/home/stepanferubko/learn/fantasy-league-client/src/test/resources/legueInfo1.json");
+            LeagueResponse leagueResponse = FileReader.readLeague("/home/stepanferubko/learn/fantasy-league-client/src/test/resources/legueInfo1.json");
             League league = leagueResponse.getLeague();
-            com.learn.fantasy.entity.League league1 = new com.learn.fantasy.entity.League();
-            league1.setId(league.getId());
-            league1.setName(league.getName());
-            league1.setCreatedDate(league.getCreated());
+            com.learn.fantasy.entity.League leagueEntity = new com.learn.fantasy.entity.League();
+            leagueEntity.setId(league.getId());
+            leagueEntity.setName(league.getName());
+            leagueEntity.setCreatedDate(league.getCreated());
             List<Results> results = leagueResponse.getStandings().getResults();
             List<LeagueMember> leagueMembers = results.stream().map(r -> {
                 LeagueMember leagueMember = new LeagueMember();
@@ -82,11 +82,11 @@ public class MigrationService {
                 leagueMember.setTotal(r.getTotal());
                 leagueMember.setEntry(r.getEntry());
                 leagueMember.setEntryName(r.getEntry_name());
-                leagueMember.setLeague(league1);
+                leagueMember.setLeague(leagueEntity);
 //                leagueMemberRepository.save(leagueMember);
                 return leagueMember;
             }).collect(Collectors.toList());
-            league1.setLeagueMembers(leagueMembers);
+            leagueEntity.setLeagueMembers(leagueMembers);
 //            leagueRepository.save(league1);
             return SUCCESS;
         } catch (IOException e) {

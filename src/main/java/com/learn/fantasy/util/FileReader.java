@@ -16,7 +16,7 @@ public class FileReader {
         return mapper.readValue(new File(url), FullInfo.class);
     }
 
-    public static LeagueResponse read1(String url) throws IOException {
+    public static LeagueResponse readLeague(String url) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(new File(url), LeagueResponse.class);
     }
